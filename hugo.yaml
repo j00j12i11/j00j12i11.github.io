@@ -1,0 +1,66 @@
+baseURL: "https://j00j12i11.github.io/"
+title: "J.dev"
+description: "기술 블로그(노력형)"
+copyright: "[© CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)"
+
+theme: "seotax"
+defaultContentLanguage: "ko"
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+
+# disableKinds: ["term"]
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+permalinks:
+  posts: "/posts/:sections/:slugorcontentbasename/"
+
+markup:
+  goldmark:
+    extensions:
+      typographer:
+        disable: true
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+    codeFences: true
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+
+params:
+  author: "Jiin"
+  keywords: ["blog", "backend", "devops", "개발"]
+
+  posts:
+    section: "posts"
+
+  assets:
+    favicon: "/favicon.svg"
+
+  menu:
+    profileImage: "/profile.svg"
+    categories: true
+    recentPosts: true
+
+  social:
+    github: "https://github.com/j00j12i11"
+
+  search:
+    enabled: true
+
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+
+  schema:
+    publisherType: "Person"
+    sameAs:
+      - "https://github.com/j00j12i11"

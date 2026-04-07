@@ -1,0 +1,215 @@
+// 폰트: Pretendard (본문) + JetBrains Mono (코드)
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+code, pre, .hljs {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+// 사이드바 겹침 방지 — flex에서 사이드바 축소 금지
+.site-menu {
+  flex-shrink: 0 !important;
+}
+
+// 모바일 헤더 — 불투명
+.site-header {
+  opacity: 1 !important;
+}
+
+// 1. 사이드바 보일 때 헤더 숨김 (1254~1357px 동시 노출 방지)
+@media screen and (min-width: 1254px) {
+  .site-header {
+    display: none !important;
+  }
+}
+
+// 2. 모바일 헤더 스타일 (사이드바 없을 때)
+@media screen and (max-width: 1254px) {
+  .main-wrap {
+    margin-top: 0 !important;
+  }
+
+  .site-header {
+    background-color: #e4eaf2 !important;
+    border-bottom: 1px solid #c0c9d4;
+    width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    padding: 1rem 1.5rem !important;
+    box-sizing: border-box;
+  }
+
+  [data-theme="dark"] .site-header {
+    background-color: #0f1f35 !important;
+    border-bottom-color: #1a3355;
+  }
+}
+
+@media screen and (max-width: 1254px) and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .site-header {
+    background-color: #0f1f35 !important;
+    border-bottom-color: #1a3355;
+  }
+}
+
+
+// 제목 굵기
+h1 { font-weight: 700; }
+h2 { font-weight: 700; }
+h3 { font-weight: 600; }
+h4 { font-weight: 500; }
+
+// 사이드바 여백 확장
+.site-menu .menu-content {
+  padding: 2rem 1.5rem;
+}
+
+// J.dev 커스텀 색상
+// 라이트: 블루 톤 배경 / 다크: 다크 블루
+// 포인트: Harvest Orange #f17300
+
+// 라이트 모드
+:root {
+  --body-background: #f2f5f9;
+  --gray-100: #f6f8fb;
+  --gray-200: #e4eaf2;
+  --gray-300: #c0c9d4;
+  --gray-500: #6b7a8d;
+  --gray-800: #2d3a4a;
+
+  --body-font-color: #1a1a2e;
+  --color-link: #054a91;
+  --color-visited-link: #3e7cb1;
+  --link-background: rgba(5, 74, 145, 0.08);
+  --color-accent: #f17300;
+
+  --color-social-link: #054a91;
+  --toc-font-color: #2d3a4a;
+  --toc-active-color: #f17300;
+}
+
+// 다크 모드
+[data-theme="dark"] {
+  --body-background: #0a1628;
+  --gray-100: #0f1f35;
+  --gray-200: #0f1f35;
+  --gray-300: #1a3355;
+  --gray-500: #6c8daf;
+  --gray-800: #b0c4de;
+
+  --body-font-color: #e0e8f0;
+  --color-link: #81a4cd;
+  --color-visited-link: #3e7cb1;
+  --link-background: rgba(129, 164, 205, 0.1);
+  --color-accent: #f17300;
+
+  --color-social-link: #e0e8f0;
+  --toc-font-color: #b0c4de;
+  --toc-active-color: #f17300;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --body-background: #0a1628;
+    --gray-100: #0f1f35;
+    --gray-200: #0f1f35;
+    --gray-300: #1a3355;
+    --gray-500: #6c8daf;
+    --gray-800: #b0c4de;
+
+    --body-font-color: #e0e8f0;
+    --color-link: #81a4cd;
+    --color-visited-link: #3e7cb1;
+    --link-background: rgba(129, 164, 205, 0.1);
+    --color-accent: #f17300;
+
+    --color-social-link: #e0e8f0;
+    --toc-font-color: #b0c4de;
+    --toc-active-color: #f17300;
+  }
+}
+
+// 코드블록 라운드 처리
+.markdown pre,
+.markdown .highlight,
+.markdown .sc-codeblock,
+.markdown .sc-codeblock pre {
+  border-radius: 0.625rem !important;
+  overflow: hidden;
+}
+
+// 코드블록 - 라이트: 흰색
+.markdown pre,
+.markdown .highlight {
+  background: #ffffff;
+}
+
+.markdown .highlight table tr td {
+  background: #ffffff !important;
+}
+
+// 인라인 코드 - 라이트: 테두리 + 배경으로 확실히 구분
+.markdown code {
+  background: #e8ecf1;
+  border: 1px solid #c0c9d4;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+// 코드블록 안의 code는 테두리 제거
+.markdown pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+// 코드블록 - 다크: 배경 통일
+[data-theme="dark"] .markdown pre,
+[data-theme="dark"] .markdown .highlight,
+[data-theme="dark"] .markdown .highlight table,
+[data-theme="dark"] .markdown .highlight table tr,
+[data-theme="dark"] .markdown .highlight table tr td,
+[data-theme="dark"] .markdown .sc-codeblock,
+[data-theme="dark"] .markdown .sc-codeblock pre,
+[data-theme="dark"] .markdown .sc-codeblock pre code,
+[data-theme="dark"] .markdown .sc-codeblock .hljs {
+  background: #1e2433 !important;
+}
+
+// 인라인 코드 - 다크
+[data-theme="dark"] .markdown code {
+  background: #253045;
+  border-color: #3a4a60;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .markdown pre,
+  :root:not([data-theme]) .markdown .highlight,
+  :root:not([data-theme]) .markdown .highlight table,
+  :root:not([data-theme]) .markdown .highlight table tr,
+  :root:not([data-theme]) .markdown .highlight table tr td,
+  :root:not([data-theme]) .markdown .sc-codeblock,
+  :root:not([data-theme]) .markdown .sc-codeblock pre,
+  :root:not([data-theme]) .markdown .sc-codeblock pre code,
+  :root:not([data-theme]) .markdown .sc-codeblock .hljs {
+    background: #1e2433 !important;
+  }
+
+  :root:not([data-theme]) .markdown code {
+    background: #253045;
+    border-color: #3a4a60;
+  }
+}
+
+// 포인트 컬러 (호버, 액티브)
+// 본문 내 링크만 주황 호버
+.markdown a[href]:hover {
+  color: var(--color-accent);
+}
+
+.toc .active > a {
+  color: var(--color-accent);
+}

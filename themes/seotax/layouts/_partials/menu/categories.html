@@ -1,0 +1,80 @@
+<div class="menu-categories">
+  {{ $pages := partialCached "pages/posts" . "posts" }}
+  {{/* Categories label for root category */}}
+  <input type="checkbox" class="hidden toggle" id="categories-control" checked />
+  <label for="categories-control" class="categories-label categories-toggle">
+    <a href="{{ "categories/" | relURL }}" class="categories-root">
+      <i class="icon-folder"></i>
+      <span data-i18n-id="categories.root.label" data-i18n-text>
+        {{ i18n "categories.root.label" | default "Categories Root" }}
+      </span>
+      <span class="category-count">({{- $pages | len -}})</span>
+    </a>
+    <i class="icon-chevron-down categories-arrow"></i>
+  </label>
+  {{/* Categories list for parent category */}}
+  <ul>
+    {{ $treeL1 := partialCached "categories/tree" . "categories" }}
+    {{ range $category1 := (partial "keys" $treeL1) }}
+    {{/* Count pages including parent category */}}
+    {{ $pagesL1 := slice }}
+    {{ $category1Count := 0 }}
+    {{ range $pages }}
+      {{ if .Params.categories }}
+        {{ if eq $category1 (partial "categories/level1" .Params.categories) }}
+          {{ $pagesL1 = $pagesL1 | append . }}
+          {{ $category1Count = add $category1Count 1 }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{/* Categories label for parent category */}}
+    <li>
+      {{ $treeL2 := index $treeL1 $category1 }}
+      {{ if $treeL2 }}
+      <input type="checkbox" class="hidden toggle" id="cat-{{ $category1 | urlize }}" />
+      <label for="cat-{{ $category1 | urlize }}" class="categories-label categories-toggle">
+        <a href="{{ "search/" | relURL }}?category1={{ $category1 }}">
+          <i class="icon-folder"></i>
+          {{- $category1 -}}
+          <span class="category-count">({{- $category1Count -}})</span>
+        </a>
+        <i class="icon-chevron-down categories-arrow"></i>
+      </label>
+      {{/* Categories list for child category */}}
+      <ul>
+        {{ range $category2 := (partial "keys" $treeL2) }}
+        {{/* Count pages including child category */}}
+        {{ $category2Count := 0 }}
+        {{ range $pagesL1 }}
+          {{ if .Params.categories }}
+            {{ if eq $category2 (partial "categories/level2" .Params.categories) }}
+              {{ $category2Count = add $category2Count 1 }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+        {{/* Categories label for child category */}}
+        <li class="categories-label">
+          <a href="{{ "search/" | relURL }}?category1={{ $category1 }}&category2={{ $category2 }}">
+            <i class="icon-file"></i>
+            {{- $category2 -}}
+            <span class="category-count">({{- $category2Count -}})</span>
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+      {{ else }}
+      {{/* Categories label for parent category if child categories not exist */}}
+      <li>
+        <label for="cat-{{ $category1 | urlize }}" class="categories-label categories-toggle">
+          <a href="{{ "search/" | relURL }}?category1={{ $category1 }}" class="categories-leaf">
+            <i class="icon-file"></i>
+            {{- $category1 -}}
+            <span class="category-count">({{- $category1Count -}})</span>
+          </a>
+        </label>
+      </li>
+      {{ end }}
+    </li>
+    {{ end }}
+  </ul>
+</div>
