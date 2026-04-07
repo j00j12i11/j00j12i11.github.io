@@ -82,6 +82,7 @@ h4 { font-weight: 500; }
   --codeblock-bg: #ffffff;
   --inline-code-bg: #e8ecf1;
   --inline-code-border: #c0c9d4;
+  --codeblock-divider: #c0c9d4;
 }
 
 // 다크 모드 (공통 값)
@@ -104,6 +105,7 @@ $dark-vars: (
   --codeblock-bg: #1e2433,
   --inline-code-bg: #253045,
   --inline-code-border: #3a4a60,
+  --codeblock-divider: #536a87,
 );
 
 // 다크 모드 — 수동 토글
