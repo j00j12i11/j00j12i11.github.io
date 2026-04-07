@@ -8,6 +8,7 @@ body {
 
 code, pre, .hljs {
   font-family: 'JetBrains Mono', monospace;
+  line-height: 1.4;
 }
 
 // 사이드바 겹침 방지 — flex에서 사이드바 축소 금지
@@ -177,8 +178,9 @@ $dark-vars: (
 
 // 본문 글씨 크기
 .markdown {
-  font-size: 1rem;
+  font-size: 0.92rem;
   line-height: 1.8;
+  word-break: keep-all;
 }
 
 // 외부 링크: 밑줄
