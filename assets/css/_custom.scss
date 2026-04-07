@@ -20,41 +20,28 @@ code, pre, .hljs {
   opacity: 1 !important;
 }
 
-// 1. 사이드바 보일 때 헤더 숨김 (1254~1357px 동시 노출 방지)
+// 사이드바 보일 때 헤더 숨김 (1254~1357px 동시 노출 방지)
 @media screen and (min-width: 1254px) {
   .site-header {
     display: none !important;
   }
 }
 
-// 2. 모바일 헤더 스타일 (사이드바 없을 때)
+// 모바일 헤더 스타일 (사이드바 없을 때)
 @media screen and (max-width: 1254px) {
   .main-wrap {
     margin-top: 0 !important;
   }
 
   .site-header {
-    background-color: #e4eaf2 !important;
-    border-bottom: 1px solid #c0c9d4;
+    background-color: var(--gray-200) !important;
+    border-bottom: 1px solid var(--gray-300);
     width: 100vw !important;
     margin-left: calc(-50vw + 50%) !important;
     padding: 1rem 1.5rem !important;
     box-sizing: border-box;
   }
-
-  [data-theme="dark"] .site-header {
-    background-color: #0f1f35 !important;
-    border-bottom-color: #1a3355;
-  }
 }
-
-@media screen and (max-width: 1254px) and (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .site-header {
-    background-color: #0f1f35 !important;
-    border-bottom-color: #1a3355;
-  }
-}
-
 
 // 제목 굵기
 h1 { font-weight: 700; }
@@ -67,9 +54,10 @@ h4 { font-weight: 500; }
   padding: 2rem 1.5rem;
 }
 
-// J.dev 커스텀 색상
-// 라이트: 블루 톤 배경 / 다크: 다크 블루
-// 포인트: Harvest Orange #f17300
+// ──────────────────────────────────────────────
+// J.dev 커스텀 색상 (CSS 변수)
+// 라이트: 블루 톤 배경 / 다크: 다크 블루 / 포인트: Harvest Orange
+// ──────────────────────────────────────────────
 
 // 라이트 모드
 :root {
@@ -89,50 +77,56 @@ h4 { font-weight: 500; }
   --color-social-link: #054a91;
   --toc-font-color: #2d3a4a;
   --toc-active-color: #f17300;
+
+  --codeblock-header-bg: #e4eaf2;
+  --codeblock-bg: #ffffff;
+  --inline-code-bg: #e8ecf1;
+  --inline-code-border: #c0c9d4;
 }
 
-// 다크 모드
+// 다크 모드 (공통 값)
+$dark-vars: (
+  --body-background: #0a1628,
+  --gray-100: #0f1f35,
+  --gray-200: #0f1f35,
+  --gray-300: #1a3355,
+  --gray-500: #6c8daf,
+  --gray-800: #b0c4de,
+  --body-font-color: #e0e8f0,
+  --color-link: #81a4cd,
+  --color-visited-link: #3e7cb1,
+  --link-background: rgba(129, 164, 205, 0.1),
+  --color-accent: #f17300,
+  --color-social-link: #e0e8f0,
+  --toc-font-color: #b0c4de,
+  --toc-active-color: #f17300,
+  --codeblock-header-bg: #2a3348,
+  --codeblock-bg: #1e2433,
+  --inline-code-bg: #253045,
+  --inline-code-border: #3a4a60,
+);
+
+// 다크 모드 — 수동 토글
 [data-theme="dark"] {
-  --body-background: #0a1628;
-  --gray-100: #0f1f35;
-  --gray-200: #0f1f35;
-  --gray-300: #1a3355;
-  --gray-500: #6c8daf;
-  --gray-800: #b0c4de;
-
-  --body-font-color: #e0e8f0;
-  --color-link: #81a4cd;
-  --color-visited-link: #3e7cb1;
-  --link-background: rgba(129, 164, 205, 0.1);
-  --color-accent: #f17300;
-
-  --color-social-link: #e0e8f0;
-  --toc-font-color: #b0c4de;
-  --toc-active-color: #f17300;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --body-background: #0a1628;
-    --gray-100: #0f1f35;
-    --gray-200: #0f1f35;
-    --gray-300: #1a3355;
-    --gray-500: #6c8daf;
-    --gray-800: #b0c4de;
-
-    --body-font-color: #e0e8f0;
-    --color-link: #81a4cd;
-    --color-visited-link: #3e7cb1;
-    --link-background: rgba(129, 164, 205, 0.1);
-    --color-accent: #f17300;
-
-    --color-social-link: #e0e8f0;
-    --toc-font-color: #b0c4de;
-    --toc-active-color: #f17300;
+  @each $var, $val in $dark-vars {
+    #{$var}: #{$val};
   }
 }
 
-// 코드블록 라운드 처리
+// 다크 모드 — 시스템 설정
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @each $var, $val in $dark-vars {
+      #{$var}: #{$val};
+    }
+  }
+}
+
+// ──────────────────────────────────────────────
+// 코드블록
+// ──────────────────────────────────────────────
+
+// 라운드 처리
 .markdown pre,
 .markdown .highlight,
 .markdown .sc-codeblock,
@@ -141,70 +135,79 @@ h4 { font-weight: 500; }
   overflow: hidden;
 }
 
-// 코드블록 - 라이트: 흰색
-.markdown pre,
-.markdown .highlight {
-  background: #ffffff;
-}
-
+// 코드블록 배경 — highlight 영역
+.markdown .highlight,
+.markdown .highlight table,
+.markdown .highlight table tr,
 .markdown .highlight table tr td {
-  background: #ffffff !important;
+  background: var(--codeblock-bg) !important;
 }
 
-// 인라인 코드 - 라이트: 테두리 + 배경으로 확실히 구분
-.markdown code {
-  background: #e8ecf1;
-  border: 1px solid #c0c9d4;
-  border-radius: 4px;
-  padding: 2px 6px;
-}
-
-// 코드블록 안의 code는 테두리 제거
-.markdown pre code {
-  background: none;
+// pre 안의 code, hljs는 투명 — pre의 gradient 헤더가 보이도록
+.markdown pre code,
+.markdown .sc-codeblock .hljs {
+  background: transparent !important;
   border: none;
   padding: 0;
 }
 
-// 코드블록 - 다크: 배경 통일
-[data-theme="dark"] .markdown pre,
-[data-theme="dark"] .markdown .highlight,
-[data-theme="dark"] .markdown .highlight table,
-[data-theme="dark"] .markdown .highlight table tr,
-[data-theme="dark"] .markdown .highlight table tr td,
-[data-theme="dark"] .markdown .sc-codeblock,
-[data-theme="dark"] .markdown .sc-codeblock pre,
-[data-theme="dark"] .markdown .sc-codeblock pre code,
-[data-theme="dark"] .markdown .sc-codeblock .hljs {
-  background: #1e2433 !important;
+// 인라인 코드
+.markdown code {
+  background: var(--inline-code-bg);
+  border: 1px solid var(--inline-code-border);
+  border-radius: 4px;
+  padding: 2px 6px;
 }
 
-// 인라인 코드 - 다크
-[data-theme="dark"] .markdown code {
-  background: #253045;
-  border-color: #3a4a60;
+// 언어 라벨 디자인
+.markdown .code-language {
+  background: rgba(5, 74, 145, 0.15) !important;
+  color: var(--color-link) !important;
+  font-weight: 500;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.5px;
+  border-radius: 0.375rem !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .markdown pre,
-  :root:not([data-theme]) .markdown .highlight,
-  :root:not([data-theme]) .markdown .highlight table,
-  :root:not([data-theme]) .markdown .highlight table tr,
-  :root:not([data-theme]) .markdown .highlight table tr td,
-  :root:not([data-theme]) .markdown .sc-codeblock,
-  :root:not([data-theme]) .markdown .sc-codeblock pre,
-  :root:not([data-theme]) .markdown .sc-codeblock pre code,
-  :root:not([data-theme]) .markdown .sc-codeblock .hljs {
-    background: #1e2433 !important;
-  }
+// ──────────────────────────────────────────────
+// 본문
+// ──────────────────────────────────────────────
 
-  :root:not([data-theme]) .markdown code {
-    background: #253045;
-    border-color: #3a4a60;
-  }
+// 본문 글씨 크기
+.markdown {
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
+// 외부 링크: 밑줄
+.markdown a[href^="http"] {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--color-link);
+}
+
+// 본문 내 앵커 링크: 포인트 색상 + 점선
+.markdown a[href^="#"] {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--color-accent);
+}
+
+// 호버
+.markdown a[href]:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+.toc .active > a {
+  color: var(--color-accent);
+}
+
+// ──────────────────────────────────────────────
 // 롱조이 헤더
+// ──────────────────────────────────────────────
+
 .longzoi-header {
   display: flex;
   align-items: flex-end;
@@ -253,14 +256,4 @@ h4 { font-weight: 500; }
       p { font-size: 0.85rem; }
     }
   }
-}
-
-// 포인트 컬러 (호버, 액티브)
-// 본문 내 링크만 주황 호버
-.markdown a[href]:hover {
-  color: var(--color-accent);
-}
-
-.toc .active > a {
-  color: var(--color-accent);
 }

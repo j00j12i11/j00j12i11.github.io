@@ -206,6 +206,12 @@
       padding: 0;
       margin: 0;
       position: relative;
+      // 헤더 영역 배경색 구분
+      background: linear-gradient(
+        to bottom,
+        var(--codeblock-header-bg) 2.75rem,
+        var(--codeblock-bg) 2.75rem
+      );
 
       // Single-line
       &:not(:has(.hljs-ln)) {
