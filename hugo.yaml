@@ -46,7 +46,7 @@ params:
     favicon: "/favicon.svg"
 
   menu:
-    profileImage: "/profile.png"
+    profileImage: "/front_zoi.png"
     categories: true
     recentPosts: true
 
