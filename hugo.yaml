@@ -46,7 +46,7 @@ params:
     favicon: "/favicon.svg"
 
   menu:
-    profileImage: "/profile.svg"
+    profileImage: "/profile.png"
     categories: true
     recentPosts: true
 
