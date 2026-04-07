@@ -668,7 +668,7 @@ body[dir="rtl"] .site-menu {
 .content-header {
   text-align: center;
   padding-bottom: space(24);
-  border-bottom: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--codeblock-divider);
 }
 
 .content-category {
@@ -748,7 +748,7 @@ body[dir="rtl"] .site-menu {
   gap: 0;
   margin-top: space(24);
   padding-top: space(24);
-  border-top: 1px solid var(--gray-200);
+  border-top: 1px solid var(--codeblock-divider);
   overflow: hidden;
 
   @media screen and (max-width: breakpoint(narrow)) {
