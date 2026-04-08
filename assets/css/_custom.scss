@@ -268,3 +268,17 @@ $dark-vars: (
     }
   }
 }
+
+// ──────────────────────────────────────────────
+// 사이드바 접었을 때 본문 너비 확장
+// ──────────────────────────────────────────────
+
+.container:has(.site-menu.menu-hidden) .main-wrap {
+  max-width: 50rem;
+  transition: max-width 0.3s ease;
+
+  // 본문 비율 유지 — 너비 확장에 맞춰 글씨도 정비례 확대
+  .markdown {
+    font-size: calc(0.92rem * 50 / 42);
+  }
+}
