@@ -13,7 +13,7 @@
       : defaults;
   }
 
-  const menuBreakpoint = 256 + 768 * 1.3;
+  const menuBreakpoint = 256 + 672 * 1.3;
   const storageKey = 'menu-expanded';
   let scrollPosition = 0;
 

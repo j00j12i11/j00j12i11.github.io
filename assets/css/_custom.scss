@@ -11,6 +11,13 @@ code, pre, .hljs {
   line-height: 1.4;
 }
 
+// 사이드바 없는 구간에서 TOC 강제 숨김 (overlay-mode 제외)
+@media screen and (max-width: breakpoint(toc)) {
+  .site-toc:not(.overlay-mode) {
+    display: none !important;
+  }
+}
+
 // 사이드바 겹침 방지 — flex에서 사이드바 축소 금지
 .site-menu {
   flex-shrink: 0 !important;
@@ -21,15 +28,15 @@ code, pre, .hljs {
   opacity: 1 !important;
 }
 
-// 사이드바 보일 때 헤더 숨김 (1254~1357px 동시 노출 방지)
-@media screen and (min-width: 1254px) {
+// 사이드바 보일 때 헤더 숨김
+@media screen and (min-width: breakpoint(menu)) {
   .site-header {
     display: none !important;
   }
 }
 
 // 모바일 헤더 스타일 (사이드바 없을 때)
-@media screen and (max-width: 1254px) {
+@media screen and (max-width: breakpoint(menu)) {
   .main-wrap {
     margin-top: 0 !important;
   }

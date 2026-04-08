@@ -13,7 +13,7 @@
       : defaults;
   }
 
-  const tocBreakpoint = 256 + 768 * 1.1 + 256;
+  const tocBreakpoint = 256 + 672 * 1.1 + 256;
   let scrollPosition = 0;
 
   // Toggle ToC with overlay
