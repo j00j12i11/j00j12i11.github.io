@@ -53,6 +53,9 @@ params:
   social:
     github: "https://github.com/j00j12i11"
 
+  comments:
+    enabled: true
+
   search:
     enabled: true
 

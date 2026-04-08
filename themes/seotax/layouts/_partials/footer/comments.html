@@ -1,54 +1,33 @@
-<div id="disqus_thread"></div>
-<script>
-  /**
-  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables  */
-
-  var disqus_config = function () {
-    this.page.url = '{{ .Permalink }}';
-    this.page.identifier = '{{ .Permalink }}';
-  };
-
-  window.relocateDisqus = () => {
-    let attempts = 0;
-    const maxAttempts = 20;
-    const intervalId = setInterval(() => {
-      attempts++;
-      const container = document.getElementById(atob(atob('WkdsemNYVnpYM1JvY21WaFpBPT0=')));
-      var success = false;
-      if (container) {
-        const adframe = container.querySelector(atob(atob('VzNOeVl5bzlKMkZrY3lkZA==')));
-        if (adframe) {
-            container.appendChild(adframe);
-            success = true;
-        }
-      }
-      if (success || (attempts > maxAttempts)) {
-        clearInterval(intervalId);
-      }
-    }, 1000)
-  };
-
-  (function() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://{{ .Site.Params.comments.disqusShortname }}.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-
-  window.relocateDisqus();
-
-  function reloadDisqus() {
-    if (window.DISQUS) {
-      DISQUS.reset({
-        reload: true,
-        config: function () {
-          this.page.url = '{{ .Permalink }}';
-          this.page.identifier = '{{ .Permalink }}';
-        }
-      });
-      window.relocateDisqus();
-    }
-  }
+<div id="giscus-container"></div>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="j00j12i11/j00j12i11.github.io"
+  data-repo-id="R_kgDOR7sgag"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOR7sgas4C6Wu1"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="preferred_color_scheme"
+  data-lang="ko"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async>
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<script>
+  // 다크모드 전환 시 giscus 테마 동기화
+  const giscusObserver = new MutationObserver(() => {
+    const theme = document.documentElement.getAttribute('data-theme');
+    const giscusFrame = document.querySelector('iframe.giscus-frame');
+    if (giscusFrame) {
+      giscusFrame.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: theme === 'dark' ? 'dark' : 'light' } } },
+        'https://giscus.app'
+      );
+    }
+  });
+  giscusObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+</script>
