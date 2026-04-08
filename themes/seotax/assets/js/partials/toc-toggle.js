@@ -17,7 +17,8 @@
   let scrollPosition = 0;
 
   // Toggle ToC with overlay
-  function toggleToC(forceState) {
+  // skipScrollRestore: true이면 스크롤 위치를 복원하지 않음 (앵커 이동 허용)
+  function toggleToC(forceState, skipScrollRestore) {
     const tocControl = document.getElementById('toc-control');
     const tocOverlay = document.getElementById('toc-overlay');
     const tocPanel = document.querySelector('.site-toc');
@@ -26,8 +27,10 @@
       return;
     }
 
-    // Save current scroll position
-    scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    if (!skipScrollRestore) {
+      // Save current scroll position
+      scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    }
 
     if (forceState !== undefined) {
       tocControl.checked = forceState;
@@ -35,10 +38,12 @@
       tocControl.checked = !tocControl.checked;
     }
 
-    // Restore scroll position
-    requestAnimationFrame(() => {
-      window.scrollTo(0, scrollPosition);
-    });
+    if (!skipScrollRestore) {
+      // Restore scroll position
+      requestAnimationFrame(() => {
+        window.scrollTo(0, scrollPosition);
+      });
+    }
 
     // Toggle overlay and panel
     if (tocControl.checked) {
@@ -94,6 +99,16 @@
         toggleToC();
       });
     }
+
+    // TOC 항목 클릭 시 자동 닫힘 + 해당 섹션으로 이동
+    const tocLinks = document.querySelectorAll('#TableOfContents a');
+    tocLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= tocBreakpoint) {
+          toggleToC(false, true);
+        }
+      });
+    });
 
     // Close ToC on escape key
     document.addEventListener('keydown', (e) => {
