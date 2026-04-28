@@ -1,6 +1,6 @@
 ---
 title: "Claude Code + Obsidian 셋업 가이드"
-date: 2026-04-29T10:00:00+09:00
+date: 2026-04-29T00:00:00+09:00
 draft: false
 categories: ["ai-tools"]
 tags: ["claude-code", "obsidian", "claude-md", "워크플로우"]
