@@ -91,6 +91,7 @@ h4 { font-weight: 500; }
   --inline-code-bg: #e8ecf1;
   --inline-code-border: #c0c9d4;
   --codeblock-divider: #c0c9d4;
+  --blockquote-bg: rgba(5, 74, 145, 0.06);
 }
 
 // 다크 모드 (공통 값)
@@ -114,6 +115,7 @@ $dark-vars: (
   --inline-code-bg: #253045,
   --inline-code-border: #3a4a60,
   --codeblock-divider: #536a87,
+  --blockquote-bg: rgba(129, 164, 205, 0.08),
 );
 
 // 다크 모드 — 수동 토글
@@ -213,6 +215,68 @@ $dark-vars: (
 
 .toc .active > a {
   color: var(--color-accent);
+}
+
+// ──────────────────────────────────────────────
+// 인용문
+// ──────────────────────────────────────────────
+
+.markdown blockquote {
+  background: var(--blockquote-bg);
+  border-left: 3px solid var(--color-link);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 0.9rem 1.2rem;
+  margin: 1.2rem 0;
+
+  > :first-child { margin-top: 0; }
+  > :last-child { margin-bottom: 0; }
+}
+
+// ──────────────────────────────────────────────
+// 시리즈 콜아웃 (관련 글 묶음)
+// ──────────────────────────────────────────────
+
+.series-callout {
+  margin: 2.5rem 0;
+  padding: 1.1rem 1.4rem;
+  border: 1px solid rgba(127, 127, 127, 0.25);
+  border-radius: 8px;
+  background: rgba(127, 127, 127, 0.04);
+
+  .series-label {
+    cursor: pointer;
+    font-weight: 600;
+    opacity: 0.85;
+    font-size: 1.15em;
+    outline: none;
+    text-align: center;
+  }
+
+  &[open] .series-label {
+    margin-bottom: 0.9rem;
+  }
+
+  &[open] ol {
+    border-top: 2px solid rgba(127, 127, 127, 0.3);
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 0.9rem;
+  }
+
+  li.upcoming {
+    opacity: 0.5;
+  }
+
+  ol, ol li {
+    text-align: center;
+  }
+
+  ol {
+    margin: 0;
+    padding-left: 0;
+    list-style-position: inside;
+    line-height: 1.9;
+  }
 }
 
 // ──────────────────────────────────────────────

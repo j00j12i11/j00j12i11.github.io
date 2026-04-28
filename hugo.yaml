@@ -18,9 +18,6 @@ minify:
   disableXML: true
   minifyOutput: true
 
-permalinks:
-  posts: "/posts/:sections/:slugorcontentbasename/"
-
 markup:
   goldmark:
     extensions:
