@@ -1,6 +1,6 @@
 ---
 title: "Claude Code + Obsidian으로 정처기 공부"
-date: 2026-05-02T11:00:00+09:00
+date: 2026-05-02T00:00:00+09:00
 draft: false
 categories: ["ai-tools"]
 tags: ["claude-code", "obsidian", "정처기", "회고", "학습"]
