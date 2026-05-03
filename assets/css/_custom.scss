@@ -232,6 +232,79 @@ $dark-vars: (
   > :last-child { margin-bottom: 0; }
 }
 
+// 가드레일 콜아웃 (사고 결과로 정착한 룰 강조)
+.guardrail-callout > blockquote {
+  border-left-color: #f17300;
+  background: rgba(241, 115, 0, 0.06);
+}
+
+// ──────────────────────────────────────────────
+// 본문 데이터 표
+// ──────────────────────────────────────────────
+
+.markdown > table,
+.markdown .result-grid table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.4rem 0;
+  font-size: 0.95em;
+
+  th,
+  td {
+    padding: 0.65rem 1rem;
+    text-align: left;
+  }
+
+  thead th {
+    border-bottom: 2px solid rgba(5, 74, 145, 0.75);
+    background: rgba(5, 74, 145, 0.1);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  tbody td {
+    border-bottom: 1px solid rgba(5, 74, 145, 0.3);
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:has(strong) {
+    background: rgba(241, 115, 0, 0.1);
+
+    td {
+      font-weight: 600;
+    }
+  }
+}
+
+// 결과 표 두 개 나란히 배치
+.markdown .result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem 1.8rem;
+  align-items: start;
+  margin: 1.4rem 0;
+
+  > div {
+    min-width: 0;
+  }
+
+  > div > h3 {
+    margin-top: 0;
+  }
+
+  table {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
+}
+
 // ──────────────────────────────────────────────
 // 시리즈 콜아웃 (관련 글 묶음)
 // ──────────────────────────────────────────────
