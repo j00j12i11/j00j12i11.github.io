@@ -61,6 +61,9 @@ params:
     startLevel: 2
     endLevel: 3
 
+  GoogleAnalytics:
+    tagId: "G-5RB1XF4HJG"
+
   searchEngine:
     google:
       siteVerificationTag: "V8kCirsrIW0Z4IgQhdMTe34knwJ7GZVRo-cd5OjDF0s"
