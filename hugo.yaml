@@ -34,6 +34,7 @@ markup:
 
 params:
   author: "Jiin"
+  description: "기술 블로그(노력형)"
   keywords: ["blog", "backend", "devops", "개발"]
 
   posts:
