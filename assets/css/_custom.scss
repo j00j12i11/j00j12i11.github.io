@@ -815,56 +815,19 @@ $dark-vars: (
 }
 
 // ──────────────────────────────────────────────
-// 롱조이 헤더
+// 리스트 헤더 여백
 // ──────────────────────────────────────────────
 
-.longzoi-header {
-  display: flex;
-  align-items: flex-end;
-  padding: 1.5rem 0 0;
+.markdown .list-header {
+  margin: 1rem auto 0;
+  padding-bottom: 0.75rem;
 
-  img.zoi-img {
-    flex-shrink: 1;
-    min-width: 0;
-    max-width: 30%;
+  h1 {
+    margin: 0 auto 0.25rem;
   }
 
-  img.zoi-body {
-    height: 140px;
-    width: auto;
-    align-self: flex-end;
-  }
-
-  img.zoi-face {
-    height: 56px;
-    width: auto;
-    align-self: flex-start;
-    margin-top: 10px;
-  }
-
-  .longzoi-text {
-    flex: 1;
-    text-align: center;
-    padding: 2rem 2rem;
-
-    h1 { margin: 0; }
-    p { margin: 0.25rem 0 0; }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .longzoi-header {
-    img.zoi-body { height: 80px; }
-    img.zoi-face {
-      height: 32px;
-      margin-top: 6px;
-    }
-    .longzoi-text {
-      padding: 0.5rem 0.5rem;
-
-      h1 { font-size: 1.5rem; }
-      p { font-size: 0.85rem; }
-    }
+  p {
+    margin: 0;
   }
 }
 
