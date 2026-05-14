@@ -60,6 +60,12 @@ params:
     startLevel: 2
     endLevel: 3
 
+  searchEngine:
+    google:
+      siteVerificationTag: "V8kCirsrIW0Z4IgQhdMTe34knwJ7GZVRo-cd5OjDF0s"
+    naver:
+      siteVerificationTag: "0a783b8cf540e9cab3823c98788e10ceb9cb0702"
+
   schema:
     publisherType: "Person"
     sameAs:
